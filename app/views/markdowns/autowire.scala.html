@@ -1,0 +1,30 @@
+##
+
+Using autowire, server functions can be called asynchronously from the client.
+
+Enter a relative path in the input box to get a live file listing from the server.
+
+```
+def updateOutput() = {
+  outputBox.innerHTML = ""
+  Client[Api].list(inputBox.value).call().map(files => {
+    for (file <- files) {
+      outputBox.appendChild(
+        ul(li(file)).render
+      )
+    }
+  })
+}
+
+inputBox.onkeyup = { (e: dom.Event) => updateOutput() }
+```
+
+Note the line:
+```
+ul(li(file)).render
+```
+
+Which creates html using [scalatags](http://github/lihaoyi/scalatags), a statically typed scala library.
+
+Source: `client/src/main/scala/examples/AutowireDemo.scala`
+Template: `app/views/autowire.scala.html`

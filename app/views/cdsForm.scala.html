@@ -1,0 +1,21 @@
+@import sys.process._
+@import scala.language.postfixOps
+@(user: Option[models.User])(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+@import controllers.pages.routes
+@import b3.vertical.fieldConstructor
+@import helper._
+
+@main(Messages("home.title"), user) {
+  <h3>Randomize Everyone Test Form</h3>
+  @b3.form(routes.ApplicationController.cdsService("test", "randomize-patient")) {
+    @CSRF.formField
+    <input type="string" id="1234" />
+    @b3.submit('class -> "btn btn-primary btn-block"){ @Messages("Go") }
+  }
+}
+
+
+
+
+
+      

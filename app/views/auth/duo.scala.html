@@ -1,0 +1,26 @@
+@(signedRequest: String)(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+
+@* @import b3.inline.fieldConstructor *@
+@import helper._
+
+@main(Messages("duo.title")) {
+  <script src="@routes.Assets.at("javascripts/Duo-Web-v2.min.js")"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <form method="POST" id="duo_form">
+    @CSRF.formField
+  </form>
+  <iframe id="duo_iframe"
+          data-host="api-73e2b9d5.duosecurity.com"
+          data-sig-request="@signedRequest"
+          data-post-action="@controllers.auth.routes.DuoController.handleDuo">
+  </iframe>
+  <style>
+   #duo_iframe {
+     width: 100%;
+     min-width: 304px;
+     max-width: 620px;
+     height: 330px;
+     border: none;
+   }
+  </style>
+}

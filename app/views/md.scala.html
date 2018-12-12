@@ -1,0 +1,7 @@
+@* A helper to allow markdown to be included in templates *@
+@(f: =>Html)
+
+@Html(
+    org.commonmark.renderer.html.HtmlRenderer.builder().build().render(
+        org.commonmark.parser.Parser.builder().build().parse(f.toString().trim))
+)

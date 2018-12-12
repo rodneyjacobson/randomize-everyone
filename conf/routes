@@ -1,0 +1,50 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET         /                                controllers.pages.ApplicationController.index
+GET         /new                             controllers.pages.ApplicationController.newStudy
+POST        /new                             controllers.pages.ApplicationController.handleNewStudy
+GET         /edit/:study                     controllers.pages.ApplicationController.study(study)
+GET         /get/:study                      controllers.pages.ApplicationController.randomize(study)
+GET         /get/json/:study                 controllers.pages.ApplicationController.randomizeJson(study)
+GET         /:study/join                     controllers.pages.ApplicationController.join(study)
+GET         /decline                         controllers.pages.ApplicationController.decline()
+GET         /:study/assign                   controllers.pages.ApplicationController.randomize2(study)
+GET         /add/:study                      controllers.pages.ApplicationController.addBlock(study)
+# GET         /profile                         controllers.pages.ApplicationController.profile
+
+GET         /:study/cds-services             controllers.pages.ApplicationController.discovery(study)
+POST        /:study/cds-services/:service    controllers.pages.ApplicationController.cdsService(study, service)
+
+GET         /:study/cds-services/test        controllers.pages.ApplicationController.cdsTest(study)
+
+POST        /api/examples/Api/list           controllers.pages.APIController.apiRequest
+
+GET         /signOut                         controllers.pages.ApplicationController.signOut
+GET         /cas-authenticate/dartmouth      controllers.auth.SignInController.dartmouth
+GET         /authenticate/:provider          controllers.auth.SocialAuthController.authenticate(provider)
+
+GET         /signUp                          controllers.auth.SignUpController.view
+POST        /signUp                          controllers.auth.SignUpController.submit
+
+GET         /signIn                          controllers.auth.SignInController.view
+POST        /signIn                          controllers.auth.SignInController.submit
+
+GET         /password/forgot                 controllers.auth.ForgotPasswordController.view
+POST        /password/forgot                 controllers.auth.ForgotPasswordController.submit
+GET         /password/reset/:token           controllers.auth.ResetPasswordController.view(token: java.util.UUID)
+POST        /password/reset/:token           controllers.auth.ResetPasswordController.submit(token: java.util.UUID)
+GET         /password/change                 controllers.auth.ChangePasswordController.view
+POST        /password/change                 controllers.auth.ChangePasswordController.submit
+
+GET         /account/email/:email            controllers.auth.ActivateAccountController.send(email: String)
+GET         /account/activate/:token         controllers.auth.ActivateAccountController.activate(token: java.util.UUID)
+
+GET         /duo                             controllers.auth.DuoController.duo
+POST        /handleduo                       controllers.auth.DuoController.handleDuo
+
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file                    controllers.Assets.at(path="/public", file)
+GET         /webjars/*file                   controllers.WebJarAssets.at(file)

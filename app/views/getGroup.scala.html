@@ -1,0 +1,8 @@
+@(group: String)(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+
+@import controllers.pages.routes
+
+@main(Messages("assigned.title"), None) {
+  <h3>Assigned to Study Group</h3>
+  This subject has been assigned to study group "@group"
+}

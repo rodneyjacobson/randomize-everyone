@@ -1,0 +1,13 @@
+@(user: Option[models.User], users: Seq[models.User])(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+
+@main(Messages("home.title"), user) {
+  <h1>Users</h1>
+
+  <div class="user-grid">
+    @for(u <- users) {
+      <div class="grid-item">@u.firstName</div>
+      <div class="grid-item">@u.lastName</div>
+      <div class="grid-item">@u.email</div>
+    }
+  </div>
+}

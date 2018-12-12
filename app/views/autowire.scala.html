@@ -1,0 +1,9 @@
+@(user: models.User)(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+@import helper._
+
+@main(Messages("home.title"), Some(user), Some(md{markdowns.autowire()})) {
+  <div id="playground"> </div>
+
+  <script>examples.AutowireDemo().main();</script>
+  @CSRF.formField
+}

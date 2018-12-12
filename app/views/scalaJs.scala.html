@@ -1,0 +1,9 @@
+@(user: models.User)(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+
+@main(Messages("home.title"), Some(user), Some(md{markdowns.scalaJs()})) {
+  <h1>Scala.js</h1><hr>
+  <canvas id="canvas"/>
+  <script>
+   examples.Waves().main();
+  </script>
+}

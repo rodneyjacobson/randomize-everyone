@@ -1,0 +1,19 @@
+@import sys.process._
+@import scala.language.postfixOps
+@(user: Option[models.User])(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+@import controllers.pages.routes
+
+@main(Messages("home.title"), user) {
+  <h3>Randomize Everyone</h3>
+  The following test pages are available:
+  <ul>
+    <li> <a href="@routes.ApplicationController.join("test")">Join Study</a></li>
+    <li> <a href="@routes.ApplicationController.randomize("test")">Get Random Study Group</a></li>
+    <li> <a href="@routes.ApplicationController.randomizeJson("test")">JSON - Get Random Study Group</a></li>
+    <li> <a href="@routes.ApplicationController.discovery("test")">CDS-Hooks Discovery</a></li>
+  </ul>
+  Test patient-randomize hook with something like this:<br>
+  <pre>
+  curl -X POST -H 'Content-type: application/json' --data '{"hook": "patient-randomize", "hookInstance": "123"}' "https://dev-profiles.dartmouth.edu/randomize/test/cds-services/randomize-patient"
+  </pre>
+}

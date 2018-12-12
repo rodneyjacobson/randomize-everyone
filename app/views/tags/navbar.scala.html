@@ -1,0 +1,28 @@
+@* Display the Navbar *@
+@(user: Option[models.User])(implicit messages: Messages)
+<div class="navbar-header">
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+    <span class="sr-only">@Messages("toggle.navigation")</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="navbar-brand" href="@controllers.pages.routes.ApplicationController.index">@Messages("app.name")</a>
+</div>
+<nav class="collapse navbar-collapse">
+  <ul class="nav navbar-nav">
+@*    <li><a href="@controllers.pages.routes.ApplicationController.slick">@Messages("slick")</a></li>
+    <li><a href="@controllers.pages.routes.ApplicationController.scalaJs">@Messages("scalaJs")</a></li>
+    <li><a href="@controllers.pages.routes.ApplicationController.scalaRx">@Messages("scalaRx")</a></li>
+    <li><a href="@controllers.pages.routes.ApplicationController.autowire">@Messages("autowire")</a></li>
+    <li><a href="@controllers.pages.routes.ApplicationController.oneFactor">@Messages("onefactor")</a></li>*@
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+    @user.map { u =>
+        <li><a href="@controllers.pages.routes.ApplicationController.signOut">@Messages("sign.out")</a></li>
+    }.getOrElse {
+      <li><a href="@controllers.auth.routes.SignInController.view">@Messages("sign.in")</a></li>
+      <li><a href="@controllers.auth.routes.SignUpController.view">@Messages("sign.up")</a></li>
+    }
+  </ul>
+</nav>

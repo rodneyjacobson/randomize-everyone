@@ -1,0 +1,39 @@
+##
+
+ScalaRx allows the flow of data to be automated using three objects:
+
+Var's are ScalaRx variables.
+
+Rx's can be defined based on other Var's and Rx's, and will automatically update when any changes are made to those objects.
+
+Obj's (triggers) are side effects that are triggered from a change to a Var or Rx.
+
+```scala
+def everySecond(): Var[Double] = {
+ val timeVar = Var(0d)
+ def refreshTime() = { timeVar() = new Date().getTime() }
+ dom.window.setInterval(refreshTime _, 1000)
+ timeVar
+}
+
+val mouseVar = everyClick(addButton)
+val addTodo = mouseVar.trigger {
+  val desc = addDesc.value
+  val time = Try { addTime.value.toInt }.toOption.getOrElse(0)
+  addNewTodo(desc, time)
+}
+
+val timeVar = everySecond()
+
+val todoTimeCount = Rx {
+  thingsToDo().foldLeft(0)((x, y) => x + y.time)
+}
+
+val todoTimeCount = Rx {
+  thingsToDo().foldLeft(0)((x, y) => x + y.time)
+}
+```
+
+Source: `/client/src/main/scala/examples/RxDemo.scala`
+
+Template: `./app/views/scalaRx.scala.html`

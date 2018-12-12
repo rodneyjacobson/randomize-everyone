@@ -1,0 +1,11 @@
+@(study: Study)(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+
+@import controllers.pages.routes
+
+@main(Messages("assigned.title"), None) {
+  <h3>Join Study</h3>
+  Study Name: @{study.name}<p>
+  Does this subject consent to joining this study?
+  <a href="@routes.ApplicationController.randomize2(study.url)">Yes</a>
+  <a href="@routes.ApplicationController.decline()">No</a>
+}

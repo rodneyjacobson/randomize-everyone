@@ -1,0 +1,8 @@
+@import sys.process._
+@import scala.language.postfixOps
+@(user: models.User)(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+
+@main(Messages("home.title"), Some(user)) {
+  <h3>One Factor Authentication</h3>
+  This page requires an authenticated user, but no two-factor authentication.
+}

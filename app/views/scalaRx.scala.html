@@ -1,0 +1,7 @@
+@(user: models.User)(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+
+@main(Messages("home.title"), Some(user), Some(md{markdowns.scalaRx()})) {
+  <div id="playground"> </div>
+
+  <script>examples.RxDemo().main(document.getElementById('playground'));</script>
+}

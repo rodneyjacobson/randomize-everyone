@@ -1,0 +1,8 @@
+@()(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+
+@import controllers.pages.routes
+
+@main(Messages("assigned.title"), None) {
+  <h3>Study Declined</h3>
+  This subject has <b>not</b> been enrolled in the study.
+}

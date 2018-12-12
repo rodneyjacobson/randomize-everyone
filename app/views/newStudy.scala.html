@@ -1,0 +1,22 @@
+@(user: Option[models.User], studyForm: Form[Study])(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+
+@import b3.vertical.fieldConstructor
+@import controllers.pages.routes
+@import helper._
+
+@main(Messages("home.title"), user) {
+  <h3>Create New Study</h3>
+  @b3.form(routes.ApplicationController.handleNewStudy) {
+    @CSRF.formField
+    <label for="name">Name:</label>
+    @b3.text(studyForm("name"), '_hiddenLabel -> Messages("field.name"), 'placeholder -> Messages("field.studyName"), 'autofocus -> true)
+    <label for="url">URL:</label>
+    @b3.text(studyForm("url"), '_hiddenLabel -> Messages("field.url"), 'placeholder -> Messages("field.studyUrl"))
+    <label for="groups">Groups:</label>
+    @b3.number(studyForm("groups"), '_hiddenLabel -> Messages("field.groups"), 'placeholder -> Messages("field.studyGroups"))
+    <label for="blockSize">Block Size:</label>
+    @b3.number(studyForm("blockSize"), '_hiddenLabel -> Messages("field.blockSize"), 'placeholder -> Messages("field.blockSize"))
+    @b3.submit('class -> "btn btn-primary btn-block"){ @Messages("submitRequest") }
+  }
+
+}

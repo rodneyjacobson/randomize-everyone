@@ -1,0 +1,28 @@
+@()
+##
+Client code can be written in scala, and compiled to javascript.
+
+Both client and server code is written in the same language.  Code can even be *shared by both the client and server*.  The main server app goes in `./app`.  Client code goes in the `./client` folder.  Shared code goes in the `./shared` folder.
+
+```scala
+dom.window.setInterval(() => {
+  x = x + 1
+  val xx = x % w
+  if (xx == 0) {
+    clear()
+  }
+  for (((color, f), i) <- graphs) {
+    val offset = h / 3 * (i + 0.5)
+    val y = f(x / w * 75) * h / 30
+    brush.fillStyle = color
+    brush.fillRect(xx, y + offset, 3, 3)
+  }
+}, 5)
+```
+
+Source: `/client/src/main/scala/examples/Waves.scala`
+
+Template: `./app/views/scalaJs.scala.html`
+
+More on this demo and scala.js: <http://www.lihaoyi.com/hands-on-scala-js/>
+
